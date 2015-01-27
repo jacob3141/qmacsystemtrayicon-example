@@ -3,7 +3,13 @@
 
 #include <QWidget>
 
+#ifdef Q_OS_MAC
 #include "qmacsystemtrayiconimpl.h"
+#endif
+
+#ifdef Q_OS_LINUX
+#include <QSystemTrayIcon>
+#endif
 
 namespace Ui {
 class TrayWidget;
@@ -19,6 +25,7 @@ public:
 
 private slots:
     void trayIconToggled(QRect geometry);
+    void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
 protected:
     void paintEvent(QPaintEvent *);
@@ -26,8 +33,14 @@ protected:
 private:
     Ui::TrayWidget *ui;
 
+#ifdef Q_OS_MAC
     QMacSystemTrayIconImpl _systemTrayIcon;
     int _showCounter;
+#endif
+
+#ifdef Q_OS_LINUX
+    QSystemTrayIcon _systemTrayIcon;
+#endif
 };
 
 #endif // TRAYWIDGET_H

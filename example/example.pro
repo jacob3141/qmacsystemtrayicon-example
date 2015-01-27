@@ -16,11 +16,12 @@ FORMS    += \
     traywidget.ui
 
 
-
-# Link against qmacsystemtrayicon
-INCLUDEPATH += ../qmacsystemtrayiconimpl
-LIBS += -L../qmacsystemtrayiconimpl -lqmacsystemtrayiconimpl
-include(../qmacsystemtrayiconimpl/qmacsystemtrayiconimpl.pri)
+mac {
+    # Link against qmacsystemtrayicon
+    INCLUDEPATH += ../qmacsystemtrayiconimpl
+    LIBS += -L../qmacsystemtrayiconimpl -lqmacsystemtrayiconimpl
+    include(../qmacsystemtrayiconimpl/qmacsystemtrayiconimpl.pri)
+}
 
 RESOURCES += \
     resources.qrc
