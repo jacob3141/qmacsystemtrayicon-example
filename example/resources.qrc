@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/mac_frame_2x_1024.png</file>
+        <file>images/mac_frame.png</file>
+        <file>images/mac_shadow_2x_1024.png</file>
+        <file>images/mac_shadow.png</file>
+        <file>images/icon_light.png</file>
+        <file>images/icon_dark.png</file>
+    </qresource>
+</RCC>
