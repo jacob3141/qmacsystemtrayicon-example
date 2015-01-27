@@ -1,13 +1,16 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "traywidget.h"
+#include "ui_traywidget.h"
 
-#include <QUrl>
+#include <QPainter>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent, Qt::WindowStaysOnTopHint | Qt::CustomizeWindowHint | Qt::FramelessWindowHint),
-    ui(new Ui::MainWindow)
+TrayWidget::TrayWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::TrayWidget)
 {
     ui->setupUi(this);
+
+    setWindowFlags(Qt::FramelessWindowHint);
+    setAttribute(Qt::WA_TranslucentBackground);
 
     _showCounter = 0;
     _systemTrayIcon.setDarkThemePixmap(QPixmap(":/images/images/icon_dark.png"));
@@ -15,15 +18,15 @@ MainWindow::MainWindow(QWidget *parent) :
     _systemTrayIcon.setText("0");
     connect(&_systemTrayIcon, SIGNAL(trayIconToggled(QRect)), this, SLOT(trayIconToggled(QRect)));
 
-    ui->webView->load(QUrl("http://www.google.de"));
+    ui->webView->load(QUrl("http://www.9elements.com"));
 }
 
-MainWindow::~MainWindow()
+TrayWidget::~TrayWidget()
 {
     delete ui;
 }
 
-void MainWindow::trayIconToggled(QRect geometry) {
+void TrayWidget::trayIconToggled(QRect geometry) {
     _systemTrayIcon.setText(QString("%1").arg(_showCounter));
 
     if(isVisible()) {
@@ -35,3 +38,8 @@ void MainWindow::trayIconToggled(QRect geometry) {
     }
 }
 
+void TrayWidget::paintEvent(QPaintEvent *) {
+    QPainter p(this);
+    p.setCompositionMode(QPainter::CompositionMode_Clear);
+    p.fillRect(this->rect(), Qt::transparent);
+}

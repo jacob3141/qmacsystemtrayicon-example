@@ -1,8 +1,9 @@
-#include "mainwindow.h"
+
 #include <QApplication>
+#include "traywidget.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    MainWindow w;
+    TrayWidget t;
     return a.exec();
 }

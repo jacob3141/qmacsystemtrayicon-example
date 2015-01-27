@@ -7,11 +7,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    traywidget.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    traywidget.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    traywidget.ui
 
 
 
