@@ -7,9 +7,7 @@
 #include "qmacsystemtrayiconimpl.h"
 #endif
 
-#ifdef Q_OS_LINUX
 #include <QSystemTrayIcon>
-#endif
 
 namespace Ui {
 class TrayWidget;
