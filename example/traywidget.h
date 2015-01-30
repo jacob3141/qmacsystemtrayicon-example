@@ -22,7 +22,6 @@ public:
     ~TrayWidget();
 
 private slots:
-    void trayIconToggled(QRect geometry);
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
 protected:
