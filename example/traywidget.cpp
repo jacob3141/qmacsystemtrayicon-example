@@ -36,6 +36,8 @@ TrayWidget::~TrayWidget()
 
 void TrayWidget::trayIconActivated(QSystemTrayIcon::ActivationReason reason) {
 
+    qDebug() << reason;
+
     if(isVisible()) {
 #ifdef Q_OS_MAC
         _showCounter++;
