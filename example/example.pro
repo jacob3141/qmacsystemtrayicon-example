@@ -1,4 +1,4 @@
-QT       += core gui webkitwidgets
+QT       += core gui webkitwidgets macextras
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

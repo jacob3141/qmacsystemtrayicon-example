@@ -13,9 +13,10 @@ TrayWidget::TrayWidget(QWidget *parent) :
 
 #ifdef Q_OS_MAC
     _showCounter = 0;
-    _systemTrayIcon.setDarkThemePixmap(QPixmap(":/images/images/icon_dark.png"));
-    _systemTrayIcon.setLightThemePixmap(QPixmap(":/images/images/icon_light.png"));
-    _systemTrayIcon.setText("00:40h");
+    _systemTrayIcon = new QSystemTrayIconMac();
+    _systemTrayIcon->setIcon(QIcon(":/images/images/icon_dark.png"));
+    _systemTrayIcon->setText("00:40h");
+    _systemTrayIcon->macOSXTheme();
 #endif
 
 #ifdef Q_OS_LINUX
@@ -23,7 +24,7 @@ TrayWidget::TrayWidget(QWidget *parent) :
     _systemTrayIcon.show();
 #endif
 
-    connect(&_systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+    connect(_systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 
     ui->webView->load(QUrl("http://www.9elements.com"));
@@ -41,11 +42,11 @@ void TrayWidget::trayIconActivated(QSystemTrayIcon::ActivationReason reason) {
     if(isVisible()) {
 #ifdef Q_OS_MAC
         _showCounter++;
-        _systemTrayIcon.setText(QString("%1").arg(_showCounter));
+        //_systemTrayIcon->setText(QString("%1").arg(_showCounter));
 #endif
         hide();
     } else {
-        QRect geometry = _systemTrayIcon.geometry();
+        QRect geometry = _systemTrayIcon->geometry();
         move(geometry.x() - width() / 2 + geometry.width() / 2, geometry.y());
         show();
     }

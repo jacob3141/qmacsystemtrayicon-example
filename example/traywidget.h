@@ -4,7 +4,7 @@
 #include <QWidget>
 
 #ifdef Q_OS_MAC
-#include "qmacsystemtrayiconimpl.h"
+#include "qsystemtrayiconmac.h"
 #endif
 
 #include <QSystemTrayIcon>
@@ -31,7 +31,7 @@ private:
     Ui::TrayWidget *ui;
 
 #ifdef Q_OS_MAC
-    QMacSystemTrayIconImpl _systemTrayIcon;
+    QSystemTrayIconMac *_systemTrayIcon;
     int _showCounter;
 #endif
 
